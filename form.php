@@ -33,7 +33,7 @@ if($_SERVER['REQUEST_METHOD'] == 'POST') {
           $stmt->execute(['name' => $name, 'surname' => $surname, 'email' => $email]);
           $status = "Thank you for contacting us!";
           $name = "";
-          $message = "";
+          $surname = "";
           $email = "";
       }
   }
