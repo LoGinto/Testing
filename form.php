@@ -1,10 +1,19 @@
 <?php 
-
+$dbHost = "localhost";
+$dbUser = "root"; //arrange database to test
+$dbPassword = "";
+$dbName = "contacts";
+try {
+  $dsn = "mysql:host=" . $dbHost . ";dbname=" . $dbName;
+  $pdo = new PDO($dsn, $dbUser, $dbPassword);
+} catch(PDOException $e) {
+  echo "DB Connection Failed: " . $e->getMessage();
+}
 $status = "";
 if($_SERVER['REQUEST_METHOD'] == 'POST') {
   $name = $_POST['name'];
-  $email = $_POST['email'];
   $surname = $_POST['surname'];
+  $email = $_POST['email'];
 
   if(empty($name) || empty($email) || empty($surname)) {
     $status = "All fields are compulsory.";
@@ -18,7 +27,14 @@ if($_SERVER['REQUEST_METHOD'] == 'POST') {
         $status = "Please enter a valid surname";
       }     
       else{
+
+          $sql = "INSERT INTO contactinfo (name,surname,email) VALUES (:name,:surname,:email)"; 
+          $stmt = $pdo->prepare($sql); 
+          $stmt->execute(['name' => $name, 'surname' => $surname, 'email' => $email]);
           $status = "Thank you for contacting us!";
+          $name = "";
+          $message = "";
+          $email = "";
       }
   }
 }
@@ -46,8 +62,8 @@ if($_SERVER['REQUEST_METHOD'] == 'POST') {
                 <input type="text"  name="name" id="name" class = "da-input" placeholder="John" required>
             </div>
             <div class = "form-group">
-                <label for="Surname">Surname:</label>
-                <input type="text" name= "surname" id="Surname" class = "da-input" placeholder="Doe" required>
+                <label for="surname">Surname:</label>
+                <input type="text" name= "surname" id="surname" class = "da-input" placeholder="Doe" required>
             </div>
             <div class = "form-group">
                 <label for="email">Email:</label>
