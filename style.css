@@ -1,0 +1,54 @@
+* {
+    padding:0;
+    margin:0;
+    box-sizing: border-box;
+  }
+  body {
+    font-family:"Roboto";
+    display: flex;
+    margin-top:100px;
+    justify-content: center;
+    height:500px;
+    background-image:url("http://i.stack.imgur.com/vhoa0.jpg");
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    position: relative;  
+  }
+  input[type=text]:focus {
+    border: 3px solid #020202;
+  }
+  h1 {
+    padding:16px;
+    font-size:50px;
+    color:black;
+    text-align: center;
+  }
+  .main-form {
+    padding:32px 20px;
+  }
+  input {
+    width: 100%;
+    padding: 4px 10px;
+    margin: 8px 0;
+    box-sizing: border-box;   
+  }
+  .da-button {
+    background-color: #63b738;
+    border: none;
+    color: white;
+    padding: 16px 32px;
+    text-decoration: none;
+    margin: 4px 2px;
+    cursor: pointer;
+  }
+.da-button:hover{
+    background-color: #52e208;
+}
+.form-status{
+    padding:8px;
+    text-align:center;
+    color:white;
+    margin-top:8px;
+    margin-bottom:-24px;
+}
